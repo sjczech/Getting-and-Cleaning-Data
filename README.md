@@ -16,21 +16,19 @@ run_analysis.R accomplishes the following:
 To generate the two datasets,run the script run_analysis.R
 Package plyr is required to run the script successfully.
 
-1.  The script loads plyr
+1.  loads plyr package
 2.  assigns "uci_har.zip" to a variable named file
-3.  assigned "UCI HAR Dataset" to a variable named path
-4.  defines functions for retrieveTable and retrieveDataset, which retrieve columns and values from the data in the zip files.
-5.  downloads and unzips data
-6.  creates column names from features.txt using retrieveTable function
-7.  loads data for test and train datasets using retrieveDataset function
-8.  merges the test and train datasets using rbind
+3.  assigns "UCI HAR Dataset" to a variable named path
+4.  defines f1 function, which reads data and applies columns
+5.  defines f2 function, which reads datasets from the file
+6.  downloads and unzips data
+7.  creates column names from features.txt 
+8.  loads data for test and train datasets and merges them
 9.  arranges the data in the merged dataset using id
 10. applies desccriptive labels for activities
 11. creates dataset_std_mean, which contains only the measurements for standard deviation and mean
-12. writes dataset_std_mean to text file
-13. creates dataset_avg, which only contains measurements of each variable for each activity and subject
-14. appends column names in dataset_avg with _avg
-15. writes dataset_std_mean to text file
+12. creates dataset_avg, which only contains measurements of each variable for each activity and subject, from dataset_std_mean and modify column names
+13. writes dataset_std_mean and dataset_avg to text files
 
 dataset_std_mean will have 81 columns and 10,299 rows
 dataset_avg will have 81 columns and 180 rows
