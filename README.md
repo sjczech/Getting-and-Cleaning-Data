@@ -27,7 +27,7 @@ Package plyr is required to run the script successfully.
 9.  arranges the data in the merged dataset using id
 10. applies desccriptive labels for activities
 11. creates dataset_std_mean, which contains only the measurements for standard deviation and mean
-12. creates dataset_avg, which only contains measurements of each variable for each activity and subject, from dataset_std_mean and modify column names
+12. creates dataset_avg, which only contains measurements of each variable for each activity and subject, from dataset_std_mean and modifies column names
 13. writes dataset_std_mean and dataset_avg to text files
 
 dataset_std_mean will have 81 columns and 10,299 rows
