@@ -31,6 +31,7 @@ Package plyr is required to run the script successfully.
 13. writes dataset_std_mean and dataset_avg to text files
 
 dataset_std_mean will have 81 columns and 10,299 rows
+
 dataset_avg will have 81 columns and 180 rows
 
 
