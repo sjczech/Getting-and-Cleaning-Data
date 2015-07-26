@@ -36,7 +36,7 @@ features <- f1("features.txt")
 #load and merge test and train datasets
 train_data <- f2("train", features)
 test_data <- f2("test", features)
-merged_data <- rbind(train_data, test_dta)
+merged_data <- rbind(train_data, test_data)
 
 #rearrange the data using id
 merged_data <- arrange(merged_data, id)
