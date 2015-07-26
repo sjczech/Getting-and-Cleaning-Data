@@ -7,23 +7,23 @@ path <- "UCI HAR Dataset"
 #read table from file and apply columns
 retrieveTable <- function(filename, cols = NULL) {
   data <- data.frame()
-  x <- unz(file, paste(path, filename, sep="/"))
+  a <- unz(file, paste(path, filename, sep="/"))
   if(is.null(cols)){
-    data <- read.table(x, sep = "", stringsAsFactors = FALSE)
+    data <- read.table(a, sep = "", stringsAsFactors = FALSE)
   }
   else{
-    data <- read.table(x, sep = "", stringsAsFactors = FALSE, col.names = cols)
+    data <- read.table(a, sep = "", stringsAsFactors = FALSE, col.names = cols)
   }
   data
 }
 
 #read dataset from file
 retrieveDataset <- function(type, features){
-    subject_data <- retrieveTable(paste(type,"/","subject_",type,".txt",sep=""),"id")
-    y_data <- retrieveTable(paste(type,"/","y_",type,".txt",sep=""),"activity")    
-    x_data <- retrieveTable(paste(type,"/","X_",type,".txt",sep=""),features$V2) 
+    subject <- retrieveTable(paste(type,"/","subject_",type,".txt",sep=""),"id")
+    y <- retrieveTable(paste(type,"/","y_",type,".txt",sep=""),"activity")    
+    x <- retrieveTable(paste(type,"/","X_",type,".txt",sep=""),features$V2) 
     
-    return (cbind(subject_data,y_data,x_data)) 
+    return (cbind(subject, y, x)) 
   } 
 
 #download and unzip file
@@ -61,6 +61,3 @@ colnames(dataset_avg)[-c(1:2)] <- paste(colnames(dataset_avg)[-c(1:2)], "_avg", 
 
 #save second dataset
 write.table(dataset_avg, "dataset_avg.txt", row.names = FALSE)
-
-
-
