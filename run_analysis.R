@@ -7,7 +7,7 @@ path <- "UCI HAR Dataset"
 #read data from file and apply columns
 f1 <- function(filename, cols = NULL) {
   data <- data.frame()
-  a <- unz(file, paste(path, filename, sep="/"))
+  a <- unz(file, paste(path, filename, sep = "/"))
   if(is.null(cols)){
     data <- read.table(a, sep = "", stringsAsFactors = FALSE)
   }
@@ -19,9 +19,9 @@ f1 <- function(filename, cols = NULL) {
 
 #read dataset from file
 f2 <- function(type, features){
-    subject <- f1(paste(type,"/","subject_",type,".txt",sep=""),"id")
-    y <- f1(paste(type,"/","y_",type,".txt",sep=""),"activity")    
-    x <- f1(paste(type,"/","X_",type,".txt",sep=""),features$V2) 
+    subject <- f1(paste(type, "/", "subject_", type,".txt", sep = ""), "id")
+    y <- f1(paste(type, "/", "y_", type,".txt", sep = ""), "activity")    
+    x <- f1(paste(type, "/", "X_", type, ".txt", sep = ""), features$V2) 
     
     return (cbind(subject, y, x)) 
   } 
@@ -34,26 +34,27 @@ unzip(file)
 features <- f1("features.txt")
 
 #load and merge test and train datasets
-train <- f2("train",features)
-test <- f2("test",features)
-merged_data <- rbind(train, test)
+train_data <- f2("train", features)
+test_data <- f2("test", features)
+merged_data <- rbind(train_data, test_dta)
 
 #rearrange the data using id
 merged_data <- arrange(merged_data, id)
 
-#assign labels for activities
+#apply descriptive labels for activities
 activity_labels <- f1("activity_labels.txt")
-merged_data$activity <- factor(merged_data$activity, levels=activity_labels$V1, labels=activity_labels$V2)
+merged_data$activity <- factor(merged_data$activity, levels = activity_labels$V1, labels = activity_labels$V2)
 
-#subset the measurements on the mean and standard deviation 
-dataset_std_mean <- merged_data[,c(1,2,grep("std", colnames(merged_data)), grep("mean", colnames(merged_data)))]
+#creates first dataset with the measurements on the mean and standard deviation 
+dataset_std_mean <- merged_data[, c(1, 2, grep("std", colnames(merged_data)), grep("mean", colnames(merged_data)))]
 
-#create a second dataset with the average of each variable for each activity and subject 
-dataset_avg <- ddply(dataset_std_mean, .(id, activity), .fun=function(x){ colMeans(x[,-c(1:2)]) })
-
-#append "_avg" to column names
-colnames(dataset_avg)[-c(1:2)] <- paste(colnames(dataset_avg)[-c(1:2)], "_avg", sep="")
+#create a second dataset with the average of each variable for each activity and subject and modify column names
+dataset_avg <- ddply(dataset_std_mean, .(id, activity), .fun=function(x){ colMeans(x[, -c(1:2)]) })
+colnames(dataset_avg)[-c(1:2)] <- paste(colnames(dataset_avg)[-c(1:2)], "_avg", sep = "")
 
 #save both datasets to text
 write.table(dataset_std_mean, "dataset_std_mean.txt", row.names = FALSE)
 write.table(dataset_avg, "dataset_avg.txt", row.names = FALSE)
+
+
+
