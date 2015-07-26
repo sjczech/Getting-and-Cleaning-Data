@@ -1,8 +1,8 @@
 Code Book
 
 Two datasets:
-1.    dataset_std_mean
-2.    dataset_avg
+1.      dataset_std_mean
+2.      dataset_avg
 
 dataset_std_mean -- contains 81 columns and 10299 rows
 
