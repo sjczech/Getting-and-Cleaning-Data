@@ -1,6 +1,6 @@
 Code book
 
-dataset_std_mean -- contains 81 columns and 10299 rows
+dataset_std_mean -- contains 81 columns and 10,299 rows
 
 Columns:
 
